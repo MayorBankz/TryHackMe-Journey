@@ -19,6 +19,31 @@ For example, <em>ls</em> lists the contents of the working directory. However, h
 ## The Man(ual) Page
 The manual page are a great source of information for both system commands and applications available on both a Linux machine, which is accessible on the machine itself and online.
 
+## File System Interaction (Continuation)
+More commands for interacting with the filesystem to allow us to:
+* Create files and folders
+* Move files and folders
+* Delete files and folders
+More specifically, the following commands
+
+| Command | Full Name | Purpose |
+| ------- | --------- | -------- |
+| touch | touch | Create file |
+| mkdir | make directory | Create a folder |
+| cp | copy | Copy a file or folder |
+| mv | move | Move a file or folder |
+| file | file | Determine the type of a folder |
+
+<em><i>Protip: Similarly to using cat. we can provide full file paths, i.e. directory1/directory2/note for all of these commands</i></em>
+
+## Permissions 101
+A file or folder can have a couple of characterisitics that determine both what it is that and who we can do with it as -- such as the following:
+* Read
+* Write
+* Execute
+
+* rwx rwx rwx - The first "rwx" means read, write and execute permissions for the file owner, second means group owner has permissions to read write and execute, while the third "rwx" means read, write and execute permissions for the file owner.
+
 
 
 ## Lab (SSH)
@@ -31,16 +56,21 @@ a password for the "tryhackme" account.
 Using our <em>ls</em> as example, <em>ls</em> informs us that there are folder named folder1, folder2, folder3, folder4. However, after using the <em>-a</em> argument (short for <em>--all</em>, we now suddenly have an output with a few more files and folders such as
 ".hiddenfolder". Files and folders with "." are hidden files.
 <i>Note: Commands that accept these will also have a <em>--help</em> option. This option will list the possible options that the command accepts, provide a brief description and example of how use it.</i>
+<img width="838" height="128" alt="image" src="https://github.com/user-attachments/assets/18fd08ea-e36c-46d0-b86c-fe87198871ae" />
+<img width="921" height="610" alt="image" src="https://github.com/user-attachments/assets/b2aa196e-29dc-4dfc-8eb8-f2f195c4ce26" />
 
 ## Lab (Manual Page)
 To access this documentation, we can use the <em>man</em> command and then provide the command we want to read the documentation for. Using our <em>ls</em> example, we would use <em>man ls</em> to view the manual pages for <em>ls</em>,
 <img width="926" height="732" alt="image" src="https://github.com/user-attachments/assets/c157da32-bc21-4d96-81c6-0c5d3a528994" />
 
+## Lab (File System Interaction (Continuation) )
+In this lab, the commands <em>ls, mkdir, cp, mv, rm, echo</em> were all used.
+
+<img width="847" height="737" alt="image" src="https://github.com/user-attachments/assets/fa2e83b0-bd70-4137-afe4-2d1b0042bd6d" />
 
 
 
-<img width="838" height="128" alt="image" src="https://github.com/user-attachments/assets/18fd08ea-e36c-46d0-b86c-fe87198871ae" />
-<img width="921" height="610" alt="image" src="https://github.com/user-attachments/assets/b2aa196e-29dc-4dfc-8eb8-f2f195c4ce26" />
+
 
 
 
