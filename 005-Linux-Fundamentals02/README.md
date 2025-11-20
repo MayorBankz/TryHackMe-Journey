@@ -42,7 +42,31 @@ A file or folder can have a couple of characterisitics that determine both what 
 * Write
 * Execute
 
-* rwx rwx rwx - The first "rwx" means read, write and execute permissions for the file owner, second means group owner has permissions to read write and execute, while the third "rwx" means read, write and execute permissions for the file owner.
+* - rwx rwx rwx - The first "rwx" means read, write and execute permissions for the file owner, second means group owner has permissions to read write and execute, while the third "rwx" means read, write and execute permissions for the file owner. The "-" indicates the regular file, <em><i>d</i></em> indicates directory.
+ 
+## The Differences Between Users & Groups
+The great thing about Linux is that permissions can be so granular, that whilst a user technically owns a file, if the permissions have been set, then a group of users can also have either the same or a different set of permissions to the exact same file without affecting the file owner itself.
+
+Let's put this into a real-world context; the system user that runs a web server must have permissions to read and write files for an effective web application. However, companies such as web hosting companies will have to want to allow their customers to upload their own files for their website without being the webserver system user--compromising the security of every other customer. 
+
+## Switching Between Users
+Switching between users on a Linux install is easy work thanks to the <em>su</em> command. Unless you are the root user (or using root permissions through sudo), then you are required to know two things to facilitate this transition of user accounts:
+* The user we wish to switch to
+* The user's password
+The <em>su</em> command takes a couple of switches that may be of relevance to you.
+
+## Common Directories
+/etc
+This root directory is one of the most important root directories on your system. The etc folder (short for etcetera) is a commonplace location to store system files that are used by your operating system. 
+/var 
+The "/var" directory, "var" being short for variable data, is one of the main root folders found on a Linux install. This folder stores data that is frequently access or written by services or applications running on the system. For example, log files from running services and applications are written here (/var/log), or other data that is not necessarily associated with a specific user (i.e, databases and the like).
+
+/root 
+Unlike the /home directory, the <em>/rootfolder</em> is actually the home for the "root" system user. There isn't anything more to this folder other than just understanding that this is the home directory for the "root" user. But, it is worth a mention as the logical presumption is that this user would have their data in a directory such as "/home/root" by default.
+
+/tmp
+This is a unique root directory found on a Linux install Short for "temporary", the /tmp directory is volatile and is used to store data that is only needed to be accessed once or twice. Similar to the memory on your computer, once the computer is restarted, the contents of this folder are cleared out.
+What's useful for us in pentesting is that any user can write to this folder by default. Meaning once we have access to a machine, it serves as a good place to store things like our enumeration scripts.
 
 
 
@@ -67,6 +91,18 @@ To access this documentation, we can use the <em>man</em> command and then provi
 In this lab, the commands <em>ls, mkdir, cp, mv, rm, echo</em> were all used.
 
 <img width="847" height="737" alt="image" src="https://github.com/user-attachments/assets/fa2e83b0-bd70-4137-afe4-2d1b0042bd6d" />
+
+## Lab (Common directories)
+Testing the common directories on TryHackMe Lab
+* cd /etc
+* cd /var
+* cd /tmp
+* cd /root
+
+<img width="771" height="727" alt="image" src="https://github.com/user-attachments/assets/f79df20b-0f04-493e-9ad7-bc704b8c3d1a" />
+<img width="906" height="370" alt="image" src="https://github.com/user-attachments/assets/92a94877-a525-4622-a19f-529cc0392351" />
+
+
 
 
 
