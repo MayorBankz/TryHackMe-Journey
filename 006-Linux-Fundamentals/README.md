@@ -67,5 +67,28 @@ Python3's "HTTPServer" will serve the files in the directory that you run the co
 file
 <em>cmnatic@CMNatic-THM-LPTOP:~webserver$</em> <i>python -m http.server</i>
 serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8000/)
+
+## Processes 101
+Processes are the programs that are running on your machine. They are managed by the kernel, where each process will have an ID associated with it, also known as its PID. 
+
+## Viewing Processes
+We can use the friendly <em><i>ps</i></em> command to provide a list of the running processes as our user's session and some additional information such as its status code, the session that is running it, how much usage
+time of the CPU it is using, and the name of the actual program or command that is being executed.
+
+To see the processes run by other users and those that don't run from a session (i.e. system processes), we need to provide <i>aux</i> to the <i>ps</i> command.
+
+Another very useful command is the top command; top gives you real-time statistics about the processes running on your system instead of a one-time view. These statistics will refresh every 10 seconds, but will also refresh
+when you use the arrow keys to browse the various rows. Another great command to gain insight into your system is via the <em><i>top</i></em> command.
+
+## Managing Processes 
+You can send signals that can terminate processes; there are a variety of types of signals that correlate to exactly how "cleanly" the process is dealt with by the kernel. To kill a command, we can use the appropriately named <em><li>kill</li></em> command and the associated PID that we wish to kill. i.e., to kill PID 1337, we'd use <em><i>kill 1337</i></em>
+Below are some of the signals that we can send to a process when it is killed:
+* SIGTERM - kill the process, but allow it to do some cleanup tasks beforehand
+* SIGKILL - Kill the process - doesn't do any cleanup after the fact
+* SIGSTOP - Stop/suspend a process
+
+## Maintaining Your System: Automation
+Users may want to schedule a certain action or tasks to take place after the system has booted. 
+
 ## Lab (Nano)
 <img width="833" height="711" alt="image" src="https://github.com/user-attachments/assets/7f02a2c8-d9d1-4f9e-89db-fff3e312e9ac" />
