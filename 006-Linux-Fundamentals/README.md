@@ -88,7 +88,65 @@ Below are some of the signals that we can send to a process when it is killed:
 * SIGSTOP - Stop/suspend a process
 
 ## Maintaining Your System: Automation
-Users may want to schedule a certain action or tasks to take place after the system has booted. 
+Users may want to schedule a certain action or tasks to take place after the system has booted. Take for example, running commands, backing up files, or launching your favorite programs on, such as Spotify or Google Chrome. 
+
+Crontab is one of the process that is started during boot, which is responsible for facilitating and managing cron jobs.
+A crontab is simply a special file with formatting that is recognised by the <em><i>cron</i></em> process to execute each line step-by-step. Crontabs require 6 specific values:
+
+| Value | Description |
+| ----- | ----------- |
+| Min | What minute to execute it |
+| Hour | What hour to execute at  |
+| DOM | What day of the month to execute at |
+| MON | What month of the year to execute at |
+| DOW | Day of the week to execute at |
+| CMD | The actual command that will be executed |
+
+## Maintaining Your System: Package Management
+Introducing Packages & Software Repos
+When developers wish to submit software to the community, they will submit it to an "apt" repository. If approved, their programs and tools will be released to the wild. Two of the most redeeming features of Linux shine to light here: User accessibility and the merit of open source tools.
+
+## Managing Your Repositories (Adding & Removing)
+Normally, we use the apt command to install software onto our ubuntu system. The <em><i>apt</i></em> command is part of the package management software also named apt. Apt contains a whole suite of tools that allows us to manage the packages and sources of our software, and to install or remove software at the same time.
+
+## Maintaining Your System: Logs
+* Located in the /var/log directory
+* These files and folders contain logging information for applications and services running on your system.
+* The Operating System (OS) has become pretty good at automatically managing 
 
 ## Lab (Nano)
 <img width="833" height="711" alt="image" src="https://github.com/user-attachments/assets/7f02a2c8-d9d1-4f9e-89db-fff3e312e9ac" />
+
+## Lab ( Crontab)
+Let's use the example of backing up files. You may wish to backup "Mayowa"'s "Documents" every 12 hours. We would use the following formatting:
+<em><i>0 *12 * * * cp -R /home/mayowa/documents /var/backups/</i></em>
+
+An interesting feature of crontabs is that these also support the wildcard for asterisk ( * ). If we do not provide a value for that specific field, i.e. we don't care what month, day, or year it is executed -- only that 
+it is executed every 12 hours, we simply just place an asterisk.
+This can be confusing to begin with, which is why there are some great resources such as the online "Crontab Generator" that allows you to use a friendly application to generate your formatting for you! As well as the site "Cron Guru"!
+
+Crontabs can be edited using <em><i>crontab -e</i></em>, where you can select an editor (such as Nano).
+
+<img width="939" height="492" alt="image" src="https://github.com/user-attachments/assets/f92a47c6-13fd-49a2-89fe-288cc412d362" />
+
+## Lab (apt) - Adding and Removing (Cisco Cybersecurity LabVM)
+Let's walk through adding and removing a repository using the <em><i>add-apt-repository</i></em> command. While you can install software through the use of package installers such as <em><i>dpkg</i></em>, the benefits of apt means that whenever we update our system -- the repository that contains the pieces of software that we add also gets checked for updates. 
+In this example, we're going to add the text editor <em>Sublime Text</em> to our ubuntu machine as a repository as it is not part of the default ubuntu repositories. When adding software, the integrity of what we download is guaranteed by the use of what is called GPU (Gnu Privacy Guard) keys. These keys are essentially a safety check from the developers saying, "here's our software". If the keys do not match up to what your system trusts and what the developers used, then the software will not be downloaded.
+
+* Procedures
+So, to start, we need to add the GPG key for the developers of the Sublime Text 3.
+
+1. Let's download the GPG key and use apt-key to trust it
+* <em><i>wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -</i></em>
+2. Now that we have added this key to our trusted list, we can now add Sublime Text 3's repository to our apt sources list. We can now add Sublime Text 3's repository to our apt sources list. A good practice is to have a separate file for every different community/3rd party repository that we add
+Let's create a file named sublime-text.list in /etc/apt/sources.list.d and enter the repository information like so:
+* <em>root@linux3:/etc/apt/sources.list.d# <i>touch sublime-text.list</i></em>
+* <em>root@linux3:/etc/apt/sources.list.d# <i>ls</i></em>
+* <em>root@linux3:/etc/apt/sources.list.d# 🟨</em>
+
+3. And now use Nano or a text editor of your choice to add & save the Sublime Text 3 repository into this newly created file:
+* <em><i>deb https://download.sublimetext.com/ apt/stable/
+* 🟨
+4. After we have added this entry, we need to update apt to recognise this new entry -- this is done using the <em><i>apt update</i></em> command
+5. Once successfully updated, we can now proceed to install the software that we have trusted and added to apt using <em><i>apt install sublime-text</i></em>
+Removing packages is as easy as reversing. This process is done by using the <em><i>add-apt-repository --remove ppa:PPA_Name/ppa</i></em> or by manually deleting the file that we previously fulfilled. Once removed we can just use <em><i>apt remove [software-name-here] i.e. apt remove subime-text</i></em>
